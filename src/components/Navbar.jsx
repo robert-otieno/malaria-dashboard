@@ -81,8 +81,8 @@ const Navbar = () => {
             onClick={() => handleClick('userProfile')}>
             <img className="rounded-lg w-8 h-8" src={avatar} alt="Avatar" />
             <p>
-              <span className="text-teal-400 text-14">Hi,</span>{' '}
-              <span className="text-teal-400 ml-1 text-14">Michael</span>
+              <span className="text-teal-400 text-14">Hello,</span>{' '}
+              <span className="text-teal-400 ml-1 text-14">Joy</span>
             </p>
             <MdKeyboardArrowDown className="text-teal-400 text-14" />
           </div>
