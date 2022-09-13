@@ -5,22 +5,27 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoicm9iZXJ0LW90aWVubyIsImEiOiJjbDZjMzc5MngwMHB3M2tuaXlkbWM2cDF1In0.IRo6CjTJCnlYHj0e-I9AEA'
 
-const Map = () => {
+const Map = ({coords}) => {
   const mapContainer = useRef(null);
   const map = useRef(null);
 
+  const lat = coords[0]
+  const lng = coords[1]
+  // console.log(`Lat: ${lat}, Lng: ${lng}`)
+
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
+    // navigator.geolocation.getCurrentPosition((position) => {
       if (map.current) return;// initialize map only once
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [position.coords.longitude, position.coords.latitude],
+        center: [lng, lat],
+        // center: [position.coords.longitude, position.coords.latitude],
         zoom: 14,
         attributionControl: false
       })
 
-      new mapboxgl.Marker().setLngLat([position.coords.longitude, position.coords.latitude]).addTo(map.current);
+      // new mapboxgl.Marker().setLngLat([position.coords.longitude, position.coords.latitude]).addTo(map.current);
 
       const nav = new mapboxgl.NavigationControl();
       map.current.addControl(nav, 'bottom-right');
@@ -37,8 +42,8 @@ const Map = () => {
         customAttribution: 'Roke/Joy Mwamsidu'
       });
       map.current.addControl(customAttributionControl, 'top-right');
-    });
-  }, []);
+    // });
+  }, [lng, lat]);
 
   return (
     <>
@@ -46,8 +51,8 @@ const Map = () => {
         <div className='max-w-7xl mx-auto py-6 sm:px-6 lg:px-8'>
           {/* <!-- Replace with your content --> */}
           <div className='px-4 py-6 sm:px-0'>
-            <div className='h-96'>
-              <div ref={mapContainer} className='relative h-full'/>
+            <div className='h-full'>
+              <div ref={mapContainer} className='relative h-96'/>
             </div>
           </div>
           {/* <!-- /End replace --> */}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import { IoIosPeople, IoIosCloudOutline } from 'react-icons/io'
 import { FaMapMarkerAlt } from 'react-icons/fa'
@@ -12,7 +12,7 @@ import { useStateContext } from '../contexts/ContextProvider'
 const Country = () => {
   const { countryId } = useParams()
   const { countriesData } = useStateContext()
-  const [isShown, setIsShown] = useState(false)
+  // const [isShown, setIsShown] = useState(false)
 
   const countryDetails = (countriesData, countryId) => {
     return countriesData.find((country) => {
@@ -20,13 +20,13 @@ const Country = () => {
     })
   }
 
-  const handleClick = event => {
-    // 👇️ toggle shown state
-    setIsShown(current => !current);
+  // const handleClick = event => {
+  //   // 👇️ toggle shown state
+  //   setIsShown(current => !current);
 
-    // 👇️ or simply set it to true
-    // setIsShown(true);
-  };
+  //   // 👇️ or simply set it to true
+  //   // setIsShown(true);
+  // };
 
   const country = countryDetails(countriesData, countryId)
 
@@ -52,7 +52,7 @@ const Country = () => {
         </div>
         <div className="mt-5 flex lg:mt-0 lg:ml-4">
           <span className="hidden sm:block">
-            <button type='button' onClick={handleClick} className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+            <button type='button' className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
               <BiMapPin className='-ml-1 mr-2 h-5 w-5 text-gray-500' />
               Near Me
             </button>
@@ -75,7 +75,7 @@ const Country = () => {
       </div>
       <div className="flex gap-10 flex-wrap justify-center">
         <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780">
-          <Map />
+          {/* <Map coords={country.latlng} /> */}
         </div>
       </div>
     </>
